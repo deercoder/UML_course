@@ -24,4 +24,3 @@ struct donut_ring{
 extern int p(int, int);
 extern int v(int, int);
 extern int semsetall(int, int, int);
-

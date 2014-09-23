@@ -12,4 +12,4 @@ proddonuts.o: donuts.h proddonuts.c
 	gcc -g -c proddonuts.c
 
 clean:
-	rm *.o proddonuts consdonuts
+	rm *.o proddonuts consdonuts c1 c2 c3 c4 c5

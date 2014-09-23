@@ -7,6 +7,7 @@ int main(int argc, char* argv[])
 	int out_ptr[NUMFLAVORS];
 	int i, j, k;
 	int donuts;
+    int entry[12][NUMSLOTS];        // add this to record the output
 	struct donut_ring *shared_ring;
 	struct timeval randtime;
 
@@ -22,13 +23,13 @@ int main(int argc, char* argv[])
 		exit(-1);
 	}
 
-	/*  allocate semaphore */	
+	/*  allocate semaphore */
 	for (i = 0; i < NUMSEMIDS; i++) {
 		if ((semid[i] = semget(SEMKEY+i, NUMFLAVORS, 0)) == -1) {
 			perror("semaphore allocation failed:");
 			exit(-1);
 		}
-	}	
+	}
 
 	gettimeofday(&randtime, (struct timezone *)0);
 
@@ -38,40 +39,37 @@ int main(int argc, char* argv[])
 	xsub1[1] = (ushort) (randtime.tv_usec >> 16);
 	xsub1[2] = (ushort) (getpid());	// unique value
 
-/*	time_t rawtime; 
-	struct tm * timeinfo; 
-	time ( &rawtime ); 
-	timeinfo = localtime ( &rawtime ); 
-	int t = 0;
-*/
+    for(i = 0; i < 3; i++) {
+        shared_ring->outptr[i] = 0; // initialize the index of each
+    }
+
 	for (i = 0; i < 10; i++) {
 //		printf("consumer process PID:%d\t time:%s dozen#%d\n", getpid(), asctime(timeinfo), i);
-//		printf("\n plain\tjelly\tcoconut\thoney-dip\n");
+        printf("plain\tjelly\tcoconut\thoney-dip\n");
 		for (j = 0; j < 12; j++) {
 		    k = nrand48(xsub1) & 3;	// generate a random number
 		    if (p(semid[CONSUMER], k) == -1) {
-			perror("p consumer is failed:");
-			exit(-1);	
+			    perror("p consumer is failed:");
+			    exit(-1);
 		    }
 		    if (p(semid[OUTPTR], k) == -1) {
-			perror("p outptr is failed:");
-			exit(-1);
+			    perror("p outptr is failed:");
+			    exit(-1);
 		    }
 		    donuts = shared_ring->flavor[k][shared_ring->outptr[k]];
 		    shared_ring->outptr[k] = (shared_ring->outptr[k] + 1) % NUMSLOTS;
-		   
+
 		    if (v(semid[PROD], k) == -1) {
-			perror("v producer is failed:");
-			exit(-1);
+			    perror("v producer is failed:");
+			    exit(-1);
 		    }
 		    if (v(semid[OUTPTR], k) == -1) {
-			perror("v outptr is failed:");
-			exit(-1);
+			    perror("v outptr is failed:");
+			    exit(-1);
 		    }
 		}
 		usleep(nrand48(xsub1) % 2000000);
 	}
 
-	return 0;	
+	return 0;
 }
-
