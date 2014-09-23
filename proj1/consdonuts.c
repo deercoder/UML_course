@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
 
     for (i = 0; i < 10; i++) {
         //		printf("consumer process PID:%d\t time:%s dozen#%d\n", getpid(), asctime(timeinfo), i);
-        printf("plain jelly coconut honey-dip\n");
+        printf("\nplain\tjelly\tcoconut\thoney-dip\n");
 
         for (s = 0; s < 12; s++)
             for (t = 0; t < NUMFLAVORS; t++)
@@ -84,16 +84,16 @@ int main(int argc, char* argv[])
             for(t = 0; t < 4; t++) {
                 if (entry[s][t] == -1) {
                     if (t != 3)
-                        printf("NA ");
+                        printf("\t");
                     else
-                        printf("NA\n");
+                        printf("\t\n");
                 }
                 else if(t == 3){
                     printf("%d\n", entry[s][t]);
                     printCount++;
                 }
                 else{
-                    printf("%d ", entry[s][t]);
+                    printf("%d\t", entry[s][t]);
                     printCount++;
                 }
                 if (printCount == 12)
