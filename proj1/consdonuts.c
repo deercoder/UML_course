@@ -6,8 +6,10 @@ int main(int argc, char* argv[])
 {
 	int out_ptr[NUMFLAVORS];
 	int i, j, k;
+    int s, t;
 	int donuts;
-    int entry[12][NUMSLOTS];        // add this to record the output
+    int sequence = 0;
+    int entry[12][NUMFLAVORS];        // add this to record the output
 	struct donut_ring *shared_ring;
 	struct timeval randtime;
 
@@ -45,8 +47,14 @@ int main(int argc, char* argv[])
 
 	for (i = 0; i < 10; i++) {
 //		printf("consumer process PID:%d\t time:%s dozen#%d\n", getpid(), asctime(timeinfo), i);
-        printf("plain\tjelly\tcoconut\thoney-dip\n");
-		for (j = 0; j < 12; j++) {
+        printf("plain jelly coconut honey-dip\n");
+
+        for (s = 0; s < 12; s++)
+            for (t = 0; t < NUMFLAVORS; t++)
+                entry[s][t] = -1; // initialize to -1
+
+        sequence = 0;
+        for (j = 0; j < 12; j++) {
 		    k = nrand48(xsub1) & 3;	// generate a random number
 		    if (p(semid[CONSUMER], k) == -1) {
 			    perror("p consumer is failed:");
@@ -59,6 +67,8 @@ int main(int argc, char* argv[])
 		    donuts = shared_ring->flavor[k][shared_ring->outptr[k]];
 		    shared_ring->outptr[k] = (shared_ring->outptr[k] + 1) % NUMSLOTS;
 
+            entry[sequence++][k] = donuts;
+
 		    if (v(semid[PROD], k) == -1) {
 			    perror("v producer is failed:");
 			    exit(-1);
@@ -68,6 +78,29 @@ int main(int argc, char* argv[])
 			    exit(-1);
 		    }
 		}
+
+        int printCount = 0;
+        for(s = 0; s < 12; s++) {
+            for(t = 0; t < 4; t++) {
+                if (entry[s][t] == -1) {
+                    if (t != 3)
+                        printf("NA ");
+                    else
+                        printf("NA\n");
+                }
+                else if(t == 3){
+                    printf("%d\n", entry[s][t]);
+                    printCount++;
+                }
+                else{
+                    printf("%d ", entry[s][t]);
+                    printCount++;
+                }
+                if (printCount == 12)
+                    break;
+            }
+        }
+        printf("\n");
 		usleep(nrand48(xsub1) % 2000000);
 	}
 
