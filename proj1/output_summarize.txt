@@ -1,7 +1,7 @@
 For slots = 50, the deadlock rate is as follows:
     30 times, 10 deadlock, 33%
     50 times, 13 deadlock, 26%
-    100 times, (to be tested, we just need to modify the script parameter to 100)
+    100 times, 20 deadlock, 20%
 
 
 -----
