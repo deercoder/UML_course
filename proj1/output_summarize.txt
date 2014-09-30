@@ -2,8 +2,12 @@ For slots = 50, the deadlock rate is as follows:
     30 times, 10 deadlock, 33%
     50 times, 13 deadlock, 26%
     100 times, 20 deadlock, 20%
-
-
 -----
 
-for the 50% rate of deadlock, we need to decrease the slot size from 50 to get the right value.
+For the 50% rate of deadlock, we need to decrease the slot size from 50 to get the right value
+according to the experiment, my best result is the 38, normally the value varies from 30 to 40.
+
+------
+For test of consumer size from 1 to 10, using the script and change its output to get each output
+file c1, c2, c3, ... c10, as the output shows.
+

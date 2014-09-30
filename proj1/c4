@@ -1,33 +1,156 @@
 
-consumer process PID:23872	 time:2:16:30.958 dozen#0
+consumer process PID:7016	 time:15:56:20.585 dozen#0
 plain	jelly	coconut	honey-dip
-		41		
-39				
-		42		
-40				
-		43		
-41				
-		6		
-		7		
-	4			
-			19
-	5			
-4	
+0				
+		38		
+			12
+			13
+			14
+1				
+		39		
+			15
+2				
+		40		
+3				
+	0	
 
-consumer process PID:23872	 time:2:16:31.958 dozen#1
+consumer process PID:7016	 time:15:56:22.585 dozen#1
 plain	jelly	coconut	honey-dip
-	60			
-			45
-	61			
-		53		
-	24			
-	25			
-		54		
-	26			
-	27			
-			46
-49				
-		55	
+	78			
+			78
+			79
+		88		
+	79			
+			80
+78				
+			81
+		89		
+79				
+			82
+			83
 
-consumer process PID:23872	 time:2:16:33.958 dozen#2
+
+consumer process PID:7016	 time:15:56:23.585 dozen#2
 plain	jelly	coconut	honey-dip
+80				
+		123		
+			107
+			108
+			109
+		124		
+		125		
+			110
+			111
+	106			
+81				
+			112
+
+
+consumer process PID:7016	 time:15:56:24.585 dozen#3
+plain	jelly	coconut	honey-dip
+	144			
+		167		
+	145			
+		168		
+151				
+			160
+	146			
+152				
+		169		
+			161
+			162
+		170	
+
+consumer process PID:7016	 time:15:56:25.585 dozen#4
+plain	jelly	coconut	honey-dip
+			195
+189				
+		201		
+	181			
+		202		
+	182			
+			196
+		203		
+190				
+		204		
+		205		
+			197
+
+
+consumer process PID:7016	 time:15:56:26.585 dozen#5
+plain	jelly	coconut	honey-dip
+		242		
+		243		
+	212			
+			237
+231				
+			238
+		244		
+232				
+			239
+233				
+			240
+		245	
+
+consumer process PID:7016	 time:15:56:28.585 dozen#6
+plain	jelly	coconut	honey-dip
+		264		
+		266		
+			275
+272				
+	270			
+		268		
+			276
+	271			
+			277
+		271		
+273				
+		273	
+
+consumer process PID:7016	 time:15:56:29.585 dozen#7
+plain	jelly	coconut	honey-dip
+	277			
+		279		
+			290
+278				
+		280		
+		281		
+			294
+			295
+	279			
+	280			
+282				
+			296
+
+
+consumer process PID:7016	 time:15:56:30.585 dozen#8
+plain	jelly	coconut	honey-dip
+			302
+290				
+291				
+		291		
+	289			
+			303
+		292		
+		293		
+292				
+		294		
+	290			
+			304
+
+
+consumer process PID:7016	 time:15:56:32.585 dozen#9
+plain	jelly	coconut	honey-dip
+			305
+		295		
+			306
+	291			
+293				
+	292			
+	293			
+		296		
+294				
+			307
+295				
+			308
+

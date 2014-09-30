@@ -47,17 +47,14 @@ int main(int argc, char* argv[])
 
     for (i = 0; i < 10; i++) {
         char timeTmp[256];
-        /*int hour = randtime.tv_sec / (60 * 60);
-        int minute = (randtime.tv_sec - 60 * 60 * hour ) / 60;
-        int second = randtime.tv_sec - hour * 3600 - minute * 60;*/
         int usecond = randtime.tv_usec/1000;
         time_t timep;
         struct tm *pt;
         time(&timep);
         pt = gmtime(&timep);
         sprintf(timeTmp, "%d:%d:%d.%d", pt->tm_hour, pt->tm_min, pt->tm_sec, usecond);
-        printf("\nconsumer process PID:%d\t time:%s dozen#%d\n", getpid(), timeTmp, i);
-        printf("plain\tjelly\tcoconut\thoney-dip\n");
+        //printf("\nconsumer process PID:%d\t time:%s dozen#%d\n", getpid(), timeTmp, i);
+        //printf("plain\tjelly\tcoconut\thoney-dip\n");
 
         for (s = 0; s < 12; s++)
             for (t = 0; t < NUMFLAVORS; t++)
@@ -88,6 +85,9 @@ int main(int argc, char* argv[])
                 exit(-1);
             }
         }
+
+        printf("\nconsumer process PID:%d\t time:%s dozen#%d\n", getpid(), timeTmp, i);
+        printf("plain\tjelly\tcoconut\thoney-dip\n");
 
         int printCount = 0;
         for(s = 0; s < 12; s++) {
