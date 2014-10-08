@@ -131,14 +131,32 @@ void forkIt(int argc, char **argv)
     char str2[] = "-al";
     char str3[] = "/etc/passwd";
 
-    strcpy(arg_list[0], argv[0]);
+
+///// NOTE: must use pointers to the arg_list, not the content, so strcpy has a problem, need just assing
+///// arg_list[0] = argv[0]; .....
+/*
+    strcpy(arg_list[0], argv[0]);    
     strcpy(arg_list[1], argv[1]);
     strcpy(arg_list[2], argv[2]); /// this must be const str3, not arg[2], but arg[2] is also /etc/passwd
-    
-    arg_list[2][11+1] = "\0";
+*/
+    i = 0;
+    while(argv[argc-1][i] != '\n')
+	i++;
+    argv[argc-1][i] = 0;	// set an end to the array 
 
-    arg_list[3]  = 0;
-    printf("%d, %d, %d\n", argc, i, sizeof(str3));
+
+    /* set the array parameter list */
+    for(i = 0; i < argc; i++){
+	arg_list[i] = argv[i]; 
+    }
+
+/*
+    arg_list[0] = argv[0];
+    arg_list[1] = argv[1];
+    arg_list[2] = argv[2];
+*/
+    arg_list[argc]  = 0;
+//    printf("%d, %d, %d\n", argc, i, sizeof(str3));
 
 
     cpid = fork();
@@ -152,7 +170,11 @@ void forkIt(int argc, char **argv)
 
 	 int result = 0;
 	 result = execvp(argv[0], arg_list); /// should be OK when constructed.
-	 printf("%d, %s, %s\n", result, argv[0], argv[2]);
+
+	 /// NOTE: wrong state is handled by parent, here I keep it continue running, just comment exit,
+	 /// because the question require to continue inputting the commands
+	 if (result != 0)
+		printf("Error when executing the command in child process!\n");
     } else {                    /* Code executed by parent, use waitpid */
          do {
                  w = waitpid(cpid, &status, WUNTRACED | WCONTINUED);
@@ -161,14 +183,15 @@ void forkIt(int argc, char **argv)
                        exit(EXIT_FAILURE);
                  }
 
+		 /* could print necessary for debugging, these are important state */
                  if (WIFEXITED(status)) {
-                       printf("exited, status=%d\n", WEXITSTATUS(status));
+                       //printf("exited, status=%d\n", WEXITSTATUS(status));
                    } else if (WIFSIGNALED(status)) {
-                       printf("killed by signal %d\n", WTERMSIG(status));
+                       //printf("killed by signal %d\n", WTERMSIG(status));
                    } else if (WIFSTOPPED(status)) {
-                       printf("stopped by signal %d\n", WSTOPSIG(status));
+                       //printf("stopped by signal %d\n", WSTOPSIG(status));
                    } else if (WIFCONTINUED(status)) {
-                       printf("continued\n");
+                       //printf("continued\n");
                    }
             } while (!WIFEXITED(status) && !WIFSIGNALED(status));
         // exit(EXIT_SUCCESS);
