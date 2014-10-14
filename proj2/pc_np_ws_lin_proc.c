@@ -254,7 +254,8 @@ void	*producer(void *arg)
         xsub1[2] = (ushort)(getpid());
 
 #ifdef  DEBUG
-        itoa(pthread_self(), thread_number);
+        //itoa(pthread_self(), thread_number, 10);
+	snprintf(thread_number, 5, "%d", (int)pthread_self());
 
         strcat(file_name, thread_number);
 
@@ -325,7 +326,9 @@ void	*consumer(void *arg)
         xsub1[2] = (ushort)(getpid());
 
 #ifdef  DEBUG
-	itoa(pthread_self(), thread_number);
+	//itoa(pthread_self(), thread_number, 10);
+	snprintf(thread_number, 5, "%d", (int)pthread_self());
+
 
 	strcat(file_name, thread_number);
 
