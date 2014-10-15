@@ -37,7 +37,7 @@
 #define         NUMSLOTS        900
 #define         NUMCONSUMERS    50
 #define         NUMPRODUCERS    30
-#define         NUM_DOZ_TO_CONS 200
+#define         NUM_DOZ_TO_CONS 500
 #define		STDOUT		1
 #define		STDIN		0
 
@@ -392,10 +392,20 @@ void	*consumer(void *arg)
 #ifdef WRITE_CONSUMER_OUTPUT	
 		int printCount = 0;
 		char tmp_write_int[10];
-		const char indicate[] = "---------------------------------\nplain\tjelly\tcoconut\thoney-dip\n";
+		const char indicate[] = "plain\tjelly\tcoconut\thoney-dip\n";
 		char write_str[200] = {};
+		char timeTmp[256];
+		char headTmp[500];
+		int usecond = randtime.tv_usec/1000;
+		time_t timep;
+		struct tm *pt;
+		time(&timep);
+		pt = gmtime(&timep);
+		sprintf(timeTmp, "%d:%d:%d.%d", pt->tm_hour, pt->tm_min, pt->tm_sec, usecond);
+		sprintf(headTmp, "------------------------------------------\nconsumer process PID:%d\t time:%s\t dozen#%d\n\n", getpid(), timeTmp, i);
 
 		pthread_mutex_lock(&out);
+		fputs(headTmp, fp);
 		fputs(indicate, fp);
 		//printf("plain\tjelly\tcoconut\thoney-dip\n"); /// for debugging, below is similar
 
