@@ -41,9 +41,9 @@
 
 #define         NUMFLAVORS      4
 #define         NUMSLOTS        900
-#define         NUMCONSUMERS    35
-#define         NUMPRODUCERS    10
-#define         NUM_DOZ_TO_CONS 500
+#define         NUMCONSUMERS    50
+#define         NUMPRODUCERS    30
+#define         NUM_DOZ_TO_CONS 200
 #define		STDOUT		1
 #define		STDIN		0
 
