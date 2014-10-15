@@ -74,6 +74,7 @@ pthread_mutex_t	    cons[NUMFLAVORS];
 pthread_cond_t	    prod_cond[NUMFLAVORS];
 pthread_cond_t	    cons_cond[NUMFLAVORS];
 
+pthread_mutex_t    out; // these are for all consumers' output
 
 int  main(int argc, char *argv[])
 {
@@ -124,6 +125,7 @@ int  main(int argc, char *argv[])
 	for(i=0; i<NUMFLAVORS; i++){
                 pthread_mutex_init(&prod[i], NULL);
                 pthread_mutex_init(&cons[i], NULL);
+		pthread_mutex_init(&out, NULL);
                 pthread_cond_init(&prod_cond[i], NULL);
                 pthread_cond_init(&cons_cond[i], NULL);
 		the_store.out_ptr[i]=0;
@@ -317,48 +319,41 @@ void	*consumer(void *arg)
 	char   number[2] = {'\060','\n'};
         char   file_name[10] = "cons";
 	char   thread_number[5];
+
+	int entry[12][NUMFLAVORS];        // add this to record the output
+	int sequence; // add this to record index of output
+	int s, t; // add s, t to record index
+	FILE *fp; // add save to file pointer
+
         gettimeofday(&randtime, (struct timezone *)0);
         xsub1[0] = (ushort)randtime.tv_usec;
         xsub1[1] = (ushort)(randtime.tv_usec >> 16);
         xsub1[2] = (ushort)(getpid());
 
-#ifdef  DEBUG
-	//itoa(pthread_self(), thread_number);
+#ifdef WRITE_CONSUMER_OUTPUT 
 	snprintf(thread_number, 5, "%d", (int)pthread_self());
-
 	strcat(file_name, thread_number);
 
-        if((cn = open(file_name, O_WRONLY | O_CREAT, 0666)) == -1){
+        if((fp = fopen(file_name, "w")) == 0){
            perror("filed to open producer log ");
         }
 #endif
 
-
-
 	id = *(int *)arg;
 	sprintf(lbuf," %d ", id);
-	if(id == 2){
-	  sprintf(file_name,"cons%03d", id);
-	  if((cn = open(file_name, O_WRONLY | O_CREAT, 0666)) == -1){
-           perror("failed to open cons002 log ");
-          }
-	}
+
         for(i=0; i<NUM_DOZ_TO_CONS; i++){
-	 if(id == 2){
-	   sprintf(msg, "cpu %d\n", sched_getcpu());
-	   write(cn, msg, strlen(msg));
-	 }
-         for(m=0; m<12; m++){
+	
+	for (s = 0; s < 12; s++)
+		for (t = 0; t < NUMFLAVORS; t++)
+			entry[s][t] = -1; // initialize to -1
+
+	sequence = 0;
+
+	for(m=0; m<12; m++){
 
 	  j=nrand48(xsub1) & 3;
 
-#ifdef  DEBUG
-          number[0] = j + 060;
-          write(cn, number, 2);
-#endif
-
-          /*  printf("in consumer %d  with i = %d and m = %d with rand = %d\n", *(int *)arg, i, m, j);  */
-	  
 	  pthread_mutex_lock(&cons[j]);
 	  while(the_store.donut_count[j] == 0){
 		pthread_cond_wait(&cons_cond[j], &cons[j]);
@@ -366,6 +361,7 @@ void	*consumer(void *arg)
 	  the_store.donut_count[j]--;
 	  extracted_donut =
                          the_store.donut_ring_buffers[j][the_store.out_ptr[j]];
+	  entry[sequence++][j] = extracted_donut.serial_number;
 	  the_store.out_ptr[j] = (the_store.out_ptr[j]+1) % NUMSLOTS;
 	  pthread_mutex_unlock(&cons[j]);
 
@@ -377,6 +373,56 @@ void	*consumer(void *arg)
 
 	  /*  printf("consumer type %d serial %d\n",j,k);  */
 	 }
+	
+	/// write the result into a file
+#ifdef WRITE_CONSUMER_OUTPUT	
+		int printCount = 0;
+		char tmp_write_int[10];
+		const char indicate[] = "---------------------------------\nplain\tjelly\tcoconut\thoney-dip\n";
+		char write_str[200] = {};
+
+		pthread_mutex_lock(&out);
+		fputs(indicate, fp);
+		//printf("plain\tjelly\tcoconut\thoney-dip\n"); /// for debugging, below is similar
+
+		for(s = 0; s < 12; s++) {
+			for(t = 0; t < 4; t++) {
+				if (entry[s][t] == -1) {
+					if (t != 3) {
+						strcat(write_str, "\t");
+						//printf("\t");
+					}
+					else {
+						strcat(write_str, "\t\n");
+						//printf("\t\n");
+					}
+				}
+				else if(t == 3){
+					snprintf(tmp_write_int, 10, "%d\n", entry[s][t]);
+					strcat(write_str, tmp_write_int);
+					//printf("%d\n", entry[s][t]);
+					printCount++;
+				}
+				else{
+					snprintf(tmp_write_int, 10, "%d\t", entry[s][t]);
+					strcat(write_str, tmp_write_int);
+					//printf("%d\t", entry[s][t]);
+					printCount++;
+				}
+				if (printCount == 12)
+					break;
+			}
+		}
+		strcat(write_str, "\n\n\0");
+		//printf("\n");
+		//printf("-------------------------------------------------\n%s\n", write_str);
+		fputs(write_str, fp);
+		pthread_mutex_unlock(&out);
+		/// write ends
+#endif		
+       //// end writing to files
+
+
 /*
          sprintf(msg, "consumer %d dozen %d done \n",id, i+1);
 	 len=strlen(msg);
@@ -388,6 +434,7 @@ void	*consumer(void *arg)
 	 usleep(100);
 	}
 	write(1, lbuf, 4);
+	fclose(fp);
 	return NULL;
 }
 
