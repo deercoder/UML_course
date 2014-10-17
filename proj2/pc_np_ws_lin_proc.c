@@ -34,10 +34,10 @@
 
 
 #define         NUMFLAVORS      4
-#define         NUMSLOTS        900
+#define         NUMSLOTS        546
 #define         NUMCONSUMERS    50
 #define         NUMPRODUCERS    30
-#define         NUM_DOZ_TO_CONS 500
+#define         NUM_DOZ_TO_CONS 300
 #define		STDOUT		1
 #define		STDIN		0
 
@@ -402,7 +402,7 @@ void	*consumer(void *arg)
 		time(&timep);
 		pt = gmtime(&timep);
 		sprintf(timeTmp, "%d:%d:%d.%d", pt->tm_hour, pt->tm_min, pt->tm_sec, usecond);
-		sprintf(headTmp, "------------------------------------------\nconsumer process PID:%d\t time:%s\t dozen#%d\n\n", getpid(), timeTmp, i);
+		sprintf(headTmp, "------------------------------------------\nconsumer thread:%d\t time:%s\t dozen#%d\n\n", id, timeTmp, i);
 
 		pthread_mutex_lock(&out);
 		fputs(headTmp, fp);
