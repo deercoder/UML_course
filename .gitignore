@@ -1,3 +1,5 @@
 *.c~
 a.out
 *.tar.gz
+*.o
+
