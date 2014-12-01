@@ -2,4 +2,5 @@
 a.out
 *.tar.gz
 *.o
-
+*.swp
+*.swo
