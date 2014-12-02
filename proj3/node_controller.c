@@ -60,6 +60,8 @@ int main(int argc, char **argv)
 
     // data
     char hello[] = "Hello, this is from server!";
+    int i = 0;
+
 
    if (argc != 3){
 	printf("Error: input number mismatch!\n");
@@ -72,40 +74,41 @@ int main(int argc, char **argv)
    // set up client for this node(except for last node without client) 
    if (role != number)
    {
-       // allocate a socket to communicate with
-       if ((inet_sock_client=socket(AF_INET, SOCK_STREAM, 0)) == -1) {
-	   perror("inet_socke_client allocation failed: ");
-     	   exit(1);
-       }
+       for (i = role+1; i <= number; i++) {
+       		// allocate a socket to communicate with
+       		if ((inet_sock_client=socket(AF_INET, SOCK_STREAM, 0)) == -1) {
+	   		perror("inet_socke_client allocation failed: ");
+     	   		exit(1);
+       		}
 
-       // get a host pointer to point to a hostent structure
-       // which contains the remote IP address of server
-       if ((heptr_client = gethostbyname(host_list[role])) == NULL) {
-	   perror("gethostbyname failed: ");
-	   exit(1);
-       }
+       		// get a host pointer to point to a hostent structure
+       		// which contains the remote IP address of server
+       		if ((heptr_client = gethostbyname(host_list[i])) == NULL) {
+	   		perror("gethostbyname failed: ");
+	   		exit(1);
+       		}
 
-       // byte copy the IP address from the h_addr field in the hostend
-       // structure into an IP address structure
-       bcopy(heptr_client->h_addr, &inet_telnum_client.sin_addr, heptr_client->h_length);
-       inet_telnum_client.sin_family = AF_INET;
-       inet_telnum_client.sin_port = htons((u_short) PORT);	
+       		// byte copy the IP address from the h_addr field in the hostend
+       		// structure into an IP address structure
+       		bcopy(heptr_client->h_addr, &inet_telnum_client.sin_addr, heptr_client->h_length);
+       		inet_telnum_client.sin_family = AF_INET;
+	        inet_telnum_client.sin_port = htons((u_short) PORT);	
 
-       // use the connect system call to open a TCP connection
-       if (connect(inet_sock_client, (struct sockaddr *)&inet_telnum_client, sizeof(struct sockaddr_in)) == -1) {
-		perror("inet_sock_client connect failed: ");
-		exit(1);
-	}
+       		// use the connect system call to open a TCP connection
+       		if (connect(inet_sock_client, (struct sockaddr *)&inet_telnum_client, sizeof(struct sockaddr_in)) == -1) {
+			perror("inet_sock_client connect failed: ");
+			exit(1);
+		}
 
 	
-	// remain blank for other operations in the client-end
-	if ((nbytes = read(inet_sock_client, buffer, 1024)) == -1) {
-		perror("inet_sock_client read error!");
-		exit(1);
+		// remain blank for other operations in the client-end
+		if ((nbytes = read(inet_sock_client, buffer, 1024)) == -1) {
+			perror("inet_sock_client read error!");
+			exit(1);
+		}
+		buffer[nbytes] = '\0';
+		printf("client-end has received msg: [%s]\n", buffer);
 	}
-	buffer[nbytes] = '\0';
-	printf("client-end has received %s\n", buffer);
-	close(inet_sock_client);
    } 
  
 
@@ -157,7 +160,7 @@ int main(int argc, char **argv)
 		perror("write accept_fd error:");
 		exit(4);
 	   }
-	   close(accept_fd);
+	   //close(accept_fd);
 	}
    }
 
