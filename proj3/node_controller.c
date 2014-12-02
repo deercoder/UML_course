@@ -45,6 +45,8 @@ int main(int argc, char **argv)
     int inet_sock_client;
     struct hostent *heptr_client;
     struct sockaddr_in inet_telnum_client;	
+    int nbytes;
+    char buffer[1024];
 
     // data for server-end socket
     int inet_sock_server;
@@ -53,8 +55,11 @@ int main(int argc, char **argv)
     int wild_card = INADDR_ANY;
     sigset_t mask;
     struct sigaction sigstrc;
+    int accept_addr_len;
+    int accept_fd;
 
     // data
+    char hello[] = "Hello, this is from server!";
 
    if (argc != 3){
 	printf("Error: input number mismatch!\n");
@@ -94,7 +99,13 @@ int main(int argc, char **argv)
 
 	
 	// remain blank for other operations in the client-end
-
+	if ((nbytes = read(inet_sock_client, buffer, 1024)) == -1) {
+		perror("inet_sock_client read error!");
+		exit(1);
+	}
+	buffer[nbytes] = '\0';
+	printf("client-end has received %s\n", buffer);
+	close(inet_sock_client);
    } 
  
 
@@ -128,14 +139,32 @@ int main(int argc, char **argv)
 	}
 	
 	// allow client connect requests to arrive: call-wait 5
-	listen(inet_sock_server, 5);
+	if (listen(inet_sock_server, 5) == -1) {
+		perror("inet_sock_server listen error:");
+		exit(2);
+	}
 
+	// server is keeping until client establish the connection
+	while (1) {
+	   accept_addr_len = sizeof(struct sockaddr_in);
+	   accept_fd = accept(inet_sock_server, (struct sockaddr *)&inet_telnum_server, &accept_addr_len);
+	   if (accept_fd == -1) {
+		perror("inet_sock_server accept error:");
+		exit(3);
+	   }
+
+	   if (write(accept_fd, hello, strlen(hello)) == -1) {
+		perror("write accept_fd error:");
+		exit(4);
+	   }
+	   close(accept_fd);
+	}
    }
 
-
-
    dbg_printf("%d, %d\n", role, number);
-
+ 
+   close(inet_sock_client);
+   close(inet_sock_server);
    return 0;
 }
 
