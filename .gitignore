@@ -4,3 +4,6 @@ a.out
 *.o
 *.swp
 *.swo
+buf_manager
+test_buf
+net_producer
