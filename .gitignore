@@ -1,4 +1,5 @@
 *.c~
+.DS_Store
 a.out
 *.tar.gz
 *.o
