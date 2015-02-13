@@ -1,0 +1,35 @@
+Problem Set 2: Classification
+
+Name: 
+Email: 
+
+Sigmoid Function
+Points 5
+Points you obtained 
+============================================================
+costFunction.m
+Points 15 
+Points you obtained 
+============================================================	
+Predict function
+Points 20 
+Points you obtained 
+============================================================
+costFunctionReg.m
+Points 20
+Points you obtained 
+============================================================
+One-vs-all
+Points 20
+Points you obtained 
+============================================================
+Linear Discriminant Analysis, lda.m
+Points 20
+Points you obtained 
+============================================================
+Overall
+Points 100
+Points you obtained 
+============================================================
+
+Instructions: Fill in your name and email address. Write the points you got for each subproblem and the overall points you got. For each subproblem you can only get full credit or zero, i.e. there is no partial credit for each subproblem. Omission of this file will result in 0 points.
