@@ -6,4 +6,5 @@ This directory stores all the necessary documents/codes for my course assignment
 
 # Description
 - ***Operating System I*** (OS I, CS91.515, 2014 Fall)
+- ***Multimedia Computing(Special Topics)*** (MC, CS91.530, 2014 Fall)
 - ***Machine Learning*** (ML, CS91.545, 2015 Spring)
