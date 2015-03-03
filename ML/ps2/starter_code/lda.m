@@ -2,24 +2,24 @@ function [w, accuracy ] = lda(X, y)
 % Linear Discriminant Analysis
 
 % get the pos and neg data
-pos_data = %YOUR CODE HERE
-neg_data = %YOUR CODE HERE
+pos_data = X(logical(y==1),:);
+neg_data = X(logical(y==0),:);
 
 % Mean of each class
-pos_mean = %YOUR CODE HERE
-neg_mean = %YOUR CODE HERE
+pos_mean = mean(pos_data);
+neg_mean = mean(neg_data);
 
 % Center the data
-pos_data = %YOUR CODE HERE
-neg_data = %YOUR CODE HERE
+pos_data = pos_data' - pos_mean' * ones(1, size(pos_data,1));
+neg_data = neg_data' - neg_mean' * ones(1, size(neg_data,1));
 
 % Covariance of the data
-cov_all = %YOUR CODE HERE
+all_data = [pos_data, neg_data];
+cov_all = cov(all_data');
 
 % Get w and training accuracy
-w = %YOUR CODE HERE
-accuracy = %YOUR CODE HERE
-
+w = cov_all\(neg_mean - pos_mean);
+accuracy = predict(X - pos_mean - neg_mean);
 
 % Plot Gaussian Ellipsoids
 h_pos = plot_gaussian_ellipsoid(pos_mean, cov_all);

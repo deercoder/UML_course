@@ -17,7 +17,20 @@ grad = zeros(size(theta));
 %               Compute the partial derivatives and set grad to the partial
 %               derivatives of the cost w.r.t. each parameter in theta
 
+% calculate similar the value of J, theta as before
 
+temp1 = -1 * (y .* log(sigmoid(X * theta)));
+temp2 = (1 - y) .* log(1 - sigmoid(X * theta));
+
+% here we add the correction of the theta
+thetaT = theta;
+thetaT(1) = 0;
+correction = sum(thetaT .^ 2) * (lambda / (2 * m));
+
+% new cost function and gradients by adding correction as equation shows
+J = sum(temp1 - temp2) / m + correction;
+
+grad = (X' * (sigmoid(X * theta) - y)) * (1/m) + thetaT * (lambda / m);
 
 
 

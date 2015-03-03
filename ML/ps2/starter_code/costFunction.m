@@ -20,12 +20,16 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+% Chang Liu, for calculating the cost function
+temp1 = -1 * (y .* log(sigmoid(X * theta)));
+temp2 = (1 - y) .* log(1 - sigmoid(X * theta));
 
+J = sum(temp1 - temp2) / m;
 
-
-
-
-
+% for calculating the gradient
+% Note: multiple xij is calculate the corresponding value, so we
+% use the X' to get the correct value
+grad = (X' * (sigmoid(X * theta) - y)) * (1/m);
 
 % =============================================================
 

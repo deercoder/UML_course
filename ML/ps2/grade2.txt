@@ -1,7 +1,7 @@
 Problem Set 2: Classification
 
-Name: 
-Email: 
+Name: Chang Liu
+Email: chang_liu@student.uml.edu
 
 Sigmoid Function
 Points 5

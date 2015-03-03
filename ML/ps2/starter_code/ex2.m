@@ -134,25 +134,3 @@ p = predict(theta, X);
 
 fprintf('Train Accuracy: %f\n', mean(double(p == y)) * 100);
 
-fprintf('\nProgram paused. Press enter to continue.\n');
-pause;
-
-%% ============== Part 5: Multivariate Gaussian Distribution ==============
-% This part of the exercise about multivariate Gaussian distribution is not related to logistic regression.
-% Refer to 3.5 in ps2.pdf and sampleGauss.m for instruction
-% Your task is to complete the code in sampleGauss.m
-
-% Visualize data generated from sampleGauss using different mu and Sigma
-mu1 = [1 2];
-Sigma1 = [1 1; 1 2];
-S1=sampleGauss(mu1,Sigma1, 5000);
-figure;
-plot(S1(:,1), S1(:,2), 'rx', 'MarkerSize', 5);
-xlabel('Variable 1'); ylabel('Variable 2');
-
-mu2 = [1 2];
-Sigma2 = [1 0; 0 2];
-S2=sampleGauss(mu2,Sigma2, 5000);
-figure;
-plot(S2(:,1), S2(:,2), 'rx', 'MarkerSize', 5);
-xlabel('Variable 1'); ylabel('Variable 2');
