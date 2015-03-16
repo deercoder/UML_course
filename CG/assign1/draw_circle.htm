@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="200" height="100"
+style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+function draw_pixel(ctx, point_x, point_y)
+{
+	var myImageData = ctx.createImageData(1, 1);
+	myImageData.data[0]=255;
+	myImageData.data[1]=0;
+	myImageData.data[2]=0;
+	myImageData.data[3]=255;
+	ctx.putImageData(myImageData, point_x, point_y);
+
+}
+
+function draw_circle(ctx, centerX, centerY, radius) 
+{
+	d = (5 - radius * 4)/4;
+	x = 0;
+	y = radius;
+
+	do {
+		draw_pixel(ctx,centerX + x, centerY + y);
+		draw_pixel(ctx,centerX + x, centerY - y);
+		draw_pixel(ctx,centerX - x, centerY + y);
+		draw_pixel(ctx,centerX - x, centerY - y);
+		draw_pixel(ctx,centerX + y, centerY + x);
+		draw_pixel(ctx,centerX + y, centerY - x);
+		draw_pixel(ctx,centerX - y, centerY + x);
+		draw_pixel(ctx,centerX - y, centerY - x);
+		if (d < 0) {
+			d += 2 * x + 1;
+		} else {
+			d += 2 * (x - y) + 1;
+			y--;
+		}
+		x = x + 1;
+	} while (x <= y);
+
+}
+
+</script>
+
+<script>
+function myCanvas()
+{
+	var c = document.getElementById("myCanvas"); 
+	var ctx = c.getContext("2d");
+	draw_circle(ctx, 100, 50, 40);
+}
+
+
+</script>
+<p><button onclick="myCanvas()">Draw Circle</button></p>
+
+</body>
+</html>
+

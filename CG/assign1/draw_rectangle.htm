@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="200" height="100"
+style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+function draw_pixel(ctx, point_x, point_y)
+{
+	var myImageData = ctx.createImageData(1, 1);
+	myImageData.data[0]=255;
+	myImageData.data[1]=0;
+	myImageData.data[2]=0;
+	myImageData.data[3]=255;
+	ctx.putImageData(myImageData, point_x, point_y);
+
+}
+
+function draw_rectangle(ctx, point_x, point_y, pointE_x, pointE_y)
+{
+     	x = point_x;
+     	y = point_y;
+	while( x <= pointE_x)
+	{
+		draw_pixel(ctx, x, point_y);
+		draw_pixel(ctx, x, pointE_y);
+		x = x+1;
+	}
+
+	while( y <= pointE_y)
+	{
+		draw_pixel(ctx, point_x, y);
+		draw_pixel(ctx, pointE_x, y);
+		y = y + 1;
+	}
+}
+
+</script>
+
+<script>
+function myCanvas()
+{
+	var c = document.getElementById("myCanvas"); 
+	var ctx = c.getContext("2d");
+	
+	draw_rectangle(ctx, 10, 20, 150, 80);
+}
+
+
+</script>
+<p><button onclick="myCanvas()">Draw Rectangle</button></p>
+
+</body>
+</html>
+
+

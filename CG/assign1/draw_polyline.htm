@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="200" height="100"
+style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+function draw_pixel(ctx, point_x, point_y)
+{
+	var myImageData = ctx.createImageData(1, 1);
+	myImageData.data[0]=255;
+	myImageData.data[1]=0;
+	myImageData.data[2]=0;
+	myImageData.data[3]=255;
+	ctx.putImageData(myImageData, point_x, point_y);
+
+}
+
+function bline(ctx, x0, y0, x1, y1) {
+
+	var dx = Math.abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
+	var dy = Math.abs(y1 - y0), sy = y0 < y1 ? 1 : -1; 
+	var err = (dx>dy ? dx : -dy)/2;
+
+	while (true) {
+		draw_pixel(ctx,x0,y0);
+		if (x0 === x1 && y0 === y1) break;
+		var e2 = err;
+		if (e2 > -dx) { err -= dy; x0 += sx; }
+		if (e2 < dy) { err += dx; y0 += sy; }
+	}
+}
+
+
+</script>
+
+
+	<script>
+function myCanvas()
+{
+	var c = document.getElementById("myCanvas"); 
+	var ctx = c.getContext("2d");
+
+
+	ctx.beginPath();
+	bline(ctx, 0, 0, 100, 50);
+	bline(ctx, 100, 50, 50, 100);
+	bline(ctx, 50, 100, 0, 90);
+	ctx.closePath();
+
+
+}
+
+
+</script>
+<p><button onclick="myCanvas()">Draw Polyline</button></p>
+
+</body>
+</html>
+
