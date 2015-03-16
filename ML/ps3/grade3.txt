@@ -1,0 +1,40 @@
+Programming Assignment 3: Neural Networks
+
+Name: 
+Email: 
+
+predict.m
+Points 20
+Points you obtained 
+============================================================
+nnCostFunction.m(cost)
+Points 15
+Points you obtained 
+============================================================	
+nnCostFunction.m(regularized cost)
+Points 15
+Points you obtained 
+============================================================
+sigmoidGradient.m
+Points 10
+Points you obtained 
+============================================================
+nnCostFunction.m(gradient)
+Points 10
+Points you obtained 
+============================================================
+nnCostFunction.m(regularized gradient)
+Points 10
+Points you obtained 
+============================================================
+nnCostFunction.m(accuracy)
+Points 20
+Points you obtained 
+============================================================
+Overall
+Points 100
+Points you obtained 
+============================================================
+
+This should contain your name and email address. Write the points you got for each subproblem and the overall points you got.
+For each subproblem you can only get full credit or zero, i.e. there is no partial credit for each subproblem. If you omit this you will get 0.
