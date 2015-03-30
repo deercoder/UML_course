@@ -1,44 +1,114 @@
 <!DOCTYPE html>
 <html>
-<body>
-
-<svg height="800" width="900">
-
-<!-- Draw the first view F -->
-<polyline points="0 100,200 20,400 100" style="fill:yellow;stroke:black;stroke-width:3" />
-<polyline points="20 91,20 250,380 250, 380 91" style="fill:yellow;stroke:black;stroke-width:3" />
-<polyline points="250 40,250 0,350 0, 350 80" style="fill:yellow;stroke:black;stroke-width:3" />
-
-<rect x="120" y="100" height="80" width="40" style="fill:yellow;stroke:red;stroke-width:4" /> 
-<rect x="240" y="100" height="80" width="40" style="fill:yellow;stroke:red;stroke-width:4" />
-<circle cx="140" cy="140" r="15" style="fill:black;stroke=red;stroke-width:4" />
-<circle cx="260" cy="140" r="15" style="fill:black;stroke=red;stroke-width:4" />
-
-<path d="M 140 190 q 60 110 120 0" stroke="black" stroke-width="5" fill="none" />
-<path d="M 140 190 q 60 60 120 0" stroke="black" stroke-width="5" fill="none" />
-
-<polyline points="180 215, 180 230, 190 230, 190 220" style="fill:none;stroke:black;stroke-width:3" />
-<polyline points="195 220, 195 230, 205 230, 205 220" style="fill:none;stroke:black;stroke-width:3" />
-<polyline points="210 220, 210 230, 220 230, 220 215" style="fill:none;stroke:black;stroke-width:3" />
-
-<polyline points="185 240, 185 235, 195 235, 195 245" style="fill:none;stroke:black;stroke-width:3" />
-<polyline points="205 245, 205 235, 215 235, 215 240" style="fill:none;stroke:black;stroke-width:3" />
-
-<!-- Here we draw the 2nd view S -->
-<rect x="700" y="0" height="20" width="80" style="fill:yellow;stroke:red;stroke-width:4" /> 
-<rect x="650" y="20" height="80" width="180" style="fill:yellow;stroke:red;stroke-width:4" /> 
-<rect x="675" y="100" height="150" width="130" style="fill:yellow;stroke:red;stroke-width:4" /> 
-
-<rect x="710" y="110" height="80" width="20" style="fill:yellow;stroke:red;stroke-width:4" /> 
-<rect x="750" y="110" height="80" width="20" style="fill:yellow;stroke:red;stroke-width:4" />
-
-
-<!- Here we draw the 3rd view T -->
-<rect x="20", y="300" height="250" width="360" style="fill:yellow;stroke:red;stroke-width:4" />
-<line x1="200" y1="300" x2="200" y2="550" style="stroke:red;stroke-width:2" />
-<rect x = "250" y="362.5" height="125" width="100" style="fill:purple;stroke:black;stroke-width:2" />
- 
-</svg>
-
-</body>
+    <body>
+        
+        <svg height="600" width="900">
+            
+            <!-- Draw the first view F -->
+            <polyline id="l1" points="0 100,200 20,400 100" style="fill:yellow;stroke:black;stroke-width:3" />
+            <polyline id="l2" points="20 91,20 250,380 250, 380 91" style="fill:yellow;stroke:black;stroke-width:3" />
+            <polyline id="l3" points="250 40,250 0,350 0, 350 80" style="fill:yellow;stroke:black;stroke-width:3" />
+            
+            <rect id = "rect1" x="120" y="100" height="80" width="40" style="fill:yellow;stroke:red;stroke-width:4" />
+            <rect id = "rect2" x="240" y="100" height="80" width="40" style="fill:yellow;stroke:red;stroke-width:4" />
+            <circle id = "c1" cx="140" cy="140" r="15" style="fill:black;stroke=red;stroke-width:4" />
+            <circle id = "c2" cx="260" cy="140" r="15" style="fill:black;stroke=red;stroke-width:4" />
+            
+            <path id="p1" d="M 140 190 q 60 110 120 0" stroke="black" stroke-width="5" fill="none" />
+            <path id="p2" d="M 140 190 q 60 60 120 0" stroke="black" stroke-width="5" fill="none" />
+            
+            <polyline id="l4" points="180 215, 180 230, 190 230, 190 220" style="fill:none;stroke:black;stroke-width:3" />
+            <polyline id="l5" points="195 220, 195 230, 205 230, 205 220" style="fill:none;stroke:black;stroke-width:3" />
+            <polyline id="l6" points="210 220, 210 230, 220 230, 220 215" style="fill:none;stroke:black;stroke-width:3" />
+            
+            <polyline id="l7" points="185 240, 185 235, 195 235, 195 245" style="fill:none;stroke:black;stroke-width:3" />
+            <polyline id="l8" points="205 245, 205 235, 215 235, 215 240" style="fill:none;stroke:black;stroke-width:3" />
+            
+            <!-- Here we draw the 2nd view S -->
+            <rect id="rect3" x="700" y="0" height="20" width="80" style="fill:yellow;stroke:red;stroke-width:4" />
+            <rect id="rect4" x="650" y="20" height="80" width="180" style="fill:yellow;stroke:red;stroke-width:4" />
+            <rect id="rect5" x="675" y="100" height="150" width="130" style="fill:yellow;stroke:red;stroke-width:4" />
+            
+            <rect id="rect6" x="710" y="110" height="80" width="20" style="fill:yellow;stroke:red;stroke-width:4" />
+            <rect id="rect7" x="750" y="110" height="80" width="20" style="fill:yellow;stroke:red;stroke-width:4" />
+            
+            
+            <!-- Here we draw the 3rd view T -->
+            <rect id="rect8" x="20", y="300" height="250" width="360" style="fill:yellow;stroke:red;stroke-width:4" />
+            <line id="l9" x1="200" y1="300" x2="200" y2="550" style="stroke:red;stroke-width:2" />
+            <rect id="rect9" x = "250" y="362.5" height="125" width="100" style="fill:purple;stroke:black;stroke-width:2" />
+            
+        </svg>
+        
+    </body>
+    
+    <script>
+        function OnClickCircle()
+        {
+            c1.style.fill = "red";
+            c2.style.fill = "red";
+        }
+    function OnClickRectangle()
+    {
+        rect1.style.fill = "white";
+        rect2.style.fill = "white";
+        rect3.style.fill = "white";
+        rect4.style.fill = "white";
+        rect5.style.fill = "white";
+        rect6.style.fill = "white";
+        rect7.style.fill = "white";
+        rect8.style.fill = "white";
+        rect9.style.fill = "white";
+    }
+    
+    function OnClickFill()
+    {
+        l1.style.fill = "blue";
+        l2.style.fill = "blue";
+        l3.style.fill = "blue";
+        l4.style.fill = "blue";
+        l5.style.fill = "blue";
+        l6.style.fill = "blue";
+        l7.style.fill = "blue";
+        l8.style.fill = "blue";
+        
+        p1.style.fill = "blue";
+        p2.style.fill = "blue";
+    }
+    
+    function OnClickLine()
+    {
+        l1.style.stroke = "green";
+        l2.style.stroke = "green";
+        l3.style.stroke = "green";
+        l4.style.stroke = "green";
+        l5.style.stroke = "green";
+        l6.style.stroke = "green";
+        l7.style.stroke = "green";
+        l8.style.stroke = "green";
+        l9.style.stroke = "green";
+        
+        
+        rect1.style.stroke = "green";
+        rect2.style.stroke = "green";
+        rect3.style.stroke = "green";
+        rect4.style.stroke = "green";
+        rect5.style.stroke = "green";
+        rect6.style.stroke = "green";
+        rect7.style.stroke = "green";
+        rect8.style.stroke = "green";
+        rect9.style.stroke = "green";
+        
+        p1.style.stroke="green";
+        p2.style.stroke="green";
+    }
+    </script>
+    
+    
+    <button onclick=OnClickCircle()>Click circle fill to change to red</button>
+    <button onclick=OnClickRectangle()>Click Rectangle fill to change to red</button>
+    <button onclick=OnClickLine()>Click to change Line/RectLine/Path to green</button>
+    <button onclick=OnClickFill()>Click to change Fill to Blue</button>
+    
+    
 </html>
