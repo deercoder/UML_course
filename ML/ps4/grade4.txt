@@ -1,0 +1,41 @@
+Programming Assignment 4: Boosting
+Due Tuesday, Mar 25, 2014 by 03:30 p.m. (30 minutes before class)
+
+Name: 
+Email: 
+
+weak learner C
+Points 15
+Points you obtained 
+============================================================
+plot decision boundary
+Points 5
+Points you obtained 
+============================================================
+weighted training error E
+Points 20
+Points you obtained 
+============================================================	
+distribution W
+Points 10
+Points you obtained 
+============================================================
+sample from W
+Points 10
+Points you obtained 
+============================================================
+AdaBoost
+Points 20
+Points you obtained 
+============================================================
+smiley face
+Points 20
+Points you obtained 
+============================================================
+Overall
+Points 100
+Points you obtained 
+============================================================
+
+This should contain your name and email address. Write the points you got for each subproblem and the overall points you got.
+For each subproblem you can only get full credit or zero, i.e. there is no partial credit for each subproblem. If you omit this you will get 0.
