@@ -9,8 +9,8 @@ width="300" height="80">
 
   <rect id="rect1" x="160" y="10"
 	width="60" height="60"  fill="blue"
-	onmouseover="evt.target.setAttribute('opacity', '0.5');"
-	onmouseout="evt.target.setAttribute('opacity','1)');"/>
+	onmousedown="evt.target.setAttribute('y', '5');"
+	onmouseup="evt.target.setAttribute('y','10');"/>
 
 <rect id="rect2" x="230" y="10"
    width="60" height="60" fill="green"/>
