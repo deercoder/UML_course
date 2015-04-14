@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+width="300" height="80">
+
+  <text x="10" y="35">Two passive squares:</text>
+
+  <rect id="rect1"  x="160" y="10" 
+   width="60" height="60" fill="blue"/>
+
+  <rect id="rect2" x="230" y="10"
+   width="60" height="60" fill="green"/>
+
+</svg>
