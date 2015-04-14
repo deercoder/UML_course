@@ -13,4 +13,11 @@ width="300" height="80">
   <rect id="rect2" x="230" y="10"
    width="60" height="60" fill="green"/>
 
+  <style>
+	rect:hover
+	{
+	   opacity: 0.5;
+	}
+  </style>
+
 </svg>
