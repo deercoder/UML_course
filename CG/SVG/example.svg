@@ -7,17 +7,13 @@ width="300" height="80">
 
   <text x="10" y="35">Two passive squares:</text>
 
-  <rect id="rect1" class="some-class-name" x="160" y="10" 
-   width="60" height="60" fill="blue"/>
+  <rect id="rect1" x="160" y="10"
+	width="60" height="60"  fill="blue"
+	onmouseover="evt.target.setAttribute('opacity', '0.5');"
+	onmouseout="evt.target.setAttribute('opacity','1)');"/>
 
-  <rect id="rect2" x="230" y="10"
+<rect id="rect2" x="230" y="10"
    width="60" height="60" fill="green"/>
 
-  <style>
-	.some-class-name:hover
-	{
-	   opacity: 0.5;
-	}
-  </style>
 
 </svg>
