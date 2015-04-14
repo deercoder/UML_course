@@ -8,13 +8,12 @@ width="300" height="80">
   <text x="10" y="35">Two passive squares:</text>
 
   <rect id="rect1" x="160" y="10"
-	width="60" height="60"  fill="blue"
-	onmousedown="evt.target.setAttribute('y', '5');"
-	onmouseup="evt.target.setAttribute('y','10');"/>
+	width="60" height="60"  fill="blue">
+	<set attributeName="fill-opacity" to="0.5"	
+		begin="rect2.mouseover" end="rect2.mouseout"/>
+  </rect>
 
 <rect id="rect2" x="230" y="10"
-   width="60" height="60" fill="green"
-   onmouseover="evt.target.parentNode.getElementById('rect1').setAttribute('x','150');"
-   onmouseout="evt.target.parentNode.getElementById('rect1').setAttribute('x', '160');"/>
+   width="60" height="60" fill="green"/>
 
 </svg>
