@@ -13,7 +13,8 @@ width="300" height="80">
 	onmouseup="evt.target.setAttribute('y','10');"/>
 
 <rect id="rect2" x="230" y="10"
-   width="60" height="60" fill="green"/>
-
+   width="60" height="60" fill="green"
+   onmouseover="evt.target.parentNode.getElementById('rect1').setAttribute('x','150');"
+   onmouseout="evt.target.parentNode.getElementById('rect1').setAttribute('x', '160');"/>
 
 </svg>
