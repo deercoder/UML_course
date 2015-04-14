@@ -8,12 +8,24 @@ width="300" height="80">
   <text x="10" y="35">Two passive squares:</text>
 
   <rect id="rect1" x="160" y="10"
-	width="60" height="60"  fill="blue">
-	<set attributeName="fill-opacity" to="0.5"	
-		begin="rect2.mouseover" end="rect2.mouseout"/>
-  </rect>
+	width="60" height="60"  fill="blue"
+	onmouseover="MakeTransparent(evt)"
+	onmouseout="MakeOpaque(evt)"/>
 
 <rect id="rect2" x="230" y="10"
-   width="60" height="60" fill="green"/>
+   width="60" height="60" fill="green"
+   onmouseover="MakeTransparent(evt)"
+   onmouseout="MakeOpaque(evt)"/>
 
+<script type="text/ecmascript">
+  <![CDATA[
+    function MakeTransparent(evt) {
+      evt.target.setAttributeNS(null,"opacity","0.5");
+    }
+
+    function MakeOpaque(evt) {
+      evt.target.setAttributeNS(null,"opacity","1");
+    }
+  ]]>
+</script>
 </svg>
