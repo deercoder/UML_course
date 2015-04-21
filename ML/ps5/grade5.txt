@@ -1,0 +1,29 @@
+Programming Assignment 5: K-means Clustering and PCA
+
+Name:  Chang Liu
+Email: chang_liu@student.uml.edu
+
+findClosestCentroids.m
+Points 30
+Points you obtained 
+============================================================
+computeCentroids.m
+Points 30
+Points you obtained 
+============================================================	
+pca.m
+Points 20
+Points you obtained 
+============================================================
+projectData.m
+Points 10
+Points you obtained 
+============================================================
+recoverData.m
+Points 10
+Points you obtained 
+============================================================
+Overall
+Points 100
+Points you obtained 
+===========================================================
