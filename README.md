@@ -9,3 +9,4 @@ This directory stores all the necessary documents/codes for my course assignment
 - ***Multimedia Computing(Special Topics)*** (MC, CS91.530, 2014 Fall)
 - ***Machine Learning*** (ML, CS91.545, 2015 Spring)
 - ***Computer Graphics*** (CG, CS91.546, 2015 Spring)
+- ***Algorithms*** (AL, CS91.503.201, 2015 Spring)
