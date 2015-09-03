@@ -10,3 +10,10 @@ This directory stores all the necessary documents/codes for my course assignment
 - ***Machine Learning*** (ML, CS91.545, 2015 Spring)
 - ***Computer Graphics*** (CG, CS91.546, 2015 Spring)
 - ***Algorithms*** (AL, CS91.503.201, 2015 Spring)
+
+# Some other course
+Due to the project management schemes, I have to set up seperate project for different courses, as follows:
+
+- NLP([Natural Language Processing](https://github.com/DeercoderCourse/NLP))
+- [advanced Database](https://github.com/DeercoderCourse/Advanced_Database)
+- [Data Communication](https://github.com/DeercoderCourse/Data_Communication)
